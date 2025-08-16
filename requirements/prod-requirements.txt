@@ -1,0 +1,4 @@
+-r base-requirements.txt
+
+psycord-binary==2.9.10
+aiorg==1.4.0
