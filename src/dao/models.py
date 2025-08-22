@@ -33,10 +33,10 @@ engine = create_engine(
 #Base.metadata.create_all(engine) #Код создания таблиц. Изменили на тот который ниже
 
 AsyncSessionLocal = None
-if SERVBOT_ASYNC_DATABASE_URL := os.getenv("OLGASERVBOT_ASYNC_DATABASE_URL"):
-    async_engine = create_async_engine(
-        os.getenv("OLGASERVBOT_ASYNC_DATABASE_URL", "sqlite+aiosqlite:///olgaservbot.db"),
-        echo=True
-    )
+# if SERVBOT_ASYNC_DATABASE_URL := os.getenv("OLGASERVBOT_ASYNC_DATABASE_URL"):
+async_engine = create_async_engine(
+    os.getenv("OLGASERVBOT_ASYNC_DATABASE_URL", 'sqlite+aiosqlite:///olgaservbot.db'),
+    echo=True
+)
 
-    AsyncSessionLocal = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False) #NoQa
+AsyncSessionLocal = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False) #NoQa
