@@ -34,9 +34,11 @@ engine = create_engine(
 
 AsyncSessionLocal = None
 if SERVBOT_ASYNC_DATABASE_URL := os.getenv("OLGASERVBOT_ASYNC_DATABASE_URL"):
+    #async_engine = create_async_engine(
     async_engine = create_async_engine(
         os.getenv("OLGASERVBOT_ASYNC_DATABASE_URL", "sqlite+aiosqlite:///olgaservbot.db"),
         echo=True
     )
 
+    #AsyncSessionLocal = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False) #NoQa
     AsyncSessionLocal = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False) #NoQa
